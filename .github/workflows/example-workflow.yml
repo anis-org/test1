@@ -1,0 +1,53 @@
+name: Example workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      GH_ENVIRONMENT:
+        type: environment # Using the environment type will auto-populate based on the environments created
+        default: SBX
+        description: Environment
+      TERRAFORM_ACTION:
+        description: Terraform action
+        type: choice
+        options:
+          - apply
+          - destroy
+        default: apply
+      UPN:
+        description: Contributor login email address
+        type: string
+        required: false
+
+jobs:  
+  # MAKE SURE YOU CHANGE THE PATH!
+  infra:
+    name: Infra
+    # CHANGE THIS PATH!
+    uses: anis-org/JM-Infra-Central/.github/workflows/infra-template.yml@main
+    with:
+      GH_ENVIRONMENT: ${{ github.event.inputs.GH_ENVIRONMENT }}
+      TERRAFORM_ACTION: ${{ github.event.inputs.TERRAFORM_ACTION }}
+      UPN: ${{ github.event.inputs.UPN }}
+      APP_NAME: "bluehydrogenabacus"
+      APP_PROJECT: "DSOPS"
+      APP_LOCATION: "northeurope"
+      APP_REGION_SHORT: "EU"
+      APP_SUFFIX: "001"
+      TAG_COUNTRY: "UK"
+      TAG_ENVIRONMENT: "SBX-DSOPS-EMEA"
+      TAG_MAINT_WINDOW: "NOT REQUIRED"
+      TAG_SECTOR: "NONE"
+      TAG_COST_CENTER: "012345"
+      TAG_APP_OWNER: "paul ivey"
+      TAG_CLASSIFICATION: "internal"
+      TAG_SERVICE_CLASS: "platinum"
+    secrets:
+      SUB_POLICY_ASSIGNMENT_NAME: ${{ secrets.SUB_POLICY_ASSIGNMENT_NAME }}
+      RG_POLICY_DEFINITION_ID: ${{ secrets.RG_POLICY_DEFINITION_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      AZURE_CREDS: ${{ secrets.AZURE_CREDS }}
+      GH_PAT: ${{ secrets.GH_PAT }}

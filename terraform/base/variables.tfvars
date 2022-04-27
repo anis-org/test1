@@ -1,0 +1,19 @@
+owner_object_id         = "#{OWNER_OBJECT_ID}#"
+app_name                = "#{APP_NAME}#"
+location                = "#{APP_LOCATION}#"
+environment             = "#{APP_ENVIRONMENT}#"
+project                 = "#{APP_PROJECT}#"
+region_short            = "#{APP_REGION_SHORT}#"
+app_suffix              = "#{APP_SUFFIX}#"
+address_prefixes        = ["10.1.0.64/26"] # Not generic, so use a variable or hard-code
+tags                    = {
+  "Country"             = "#{TAG_COUNTRY}#"
+  "Environment"         = "#{TAG_ENVIRONMENT}#"
+  "Maintenance Window"  = "#{TAG_MAINT_WINDOW}#"
+  "Business Sector"     = "#{TAG_SECTOR}#"
+  "Application Name"    = "#{APP_NAME}#"
+  "Cost Center"         = "#{TAG_COST_CENTER}#"
+  "Application Owner"   = "#{TAG_APP_OWNER}#"
+  "Data Classification" = "#{TAG_CLASSIFICATION}#"
+  "Service Class"       = "#{TAG_SERVICE_CLASS}#"
+}
